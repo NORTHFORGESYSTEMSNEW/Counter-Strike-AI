@@ -1,34 +1,44 @@
-# Counter-Strike AI
+# NORTHFORGE SYSTEMS
 
-A modern, highly-stylized Jetpack Compose Android application acting as an "Aggressive Cyberbullying Defense Engine." It dismantles toxic arguments with logical precision by utilizing the Gemini API to formulate intelligent counter-arguments against online trolls, toxic comments, or logical fallacies.
+## Counter-Strike AI: Taktiksel İletişim Savunma Motoru
 
-## Features
-- 🛡️ **Cyber Defense UI**: A cyberpunk, terminal-style interface built purely via Jetpack Compose.
-- 🤖 **Gemini AI Engine**: Utilizes Gemini 3.5 Flash through Retrofit to dismantle arguments logically.
-- 🎯 **Tactical Modes**: 
-  - **Nuke Mode**: Pure intellectual and logical breakdown.
-  - **Gaslight Mode**: Psychological dominance by framing the attacker as emotionally needy.
-  - **OSINT-Threat Mode**: Tech-flex focusing on their OPSEC and emotional vulnerabilities.
-- 🔗 **Share/Copy Payloads**: Easily copy generated responses to the clipboard or share them seamlessly via the Android share sheet.
+**Dağıtım Sürümü:** 4.0.2  
+**Geliştirici:** NorthForge Systems - Ar-Ge Departmanı  
+**Erişim Seviyesi:** Kurumsal / Kısıtlı Kullanım
 
-## Project Structure
-- Built with **Kotlin** and **Jetpack Compose**.
-- Network requests are handled by **Retrofit** and **Moshi**.
-- Utilizes the **Secrets Gradle Plugin** for API Key integration.
+---
 
-## How to Set Up (API Key Configuration)
-This application uses the Gemini Pro API to dynamically generate responses. To build and run the app with real AI responses, follow these steps:
+### Yönetici Özeti
+Counter-Strike AI, dijital platformlarda karşılaşılan sekronize, manipülatif ve saldırgan iletişim kalıplarını gerçek zamanlı analiz ederek yalıtan otonom bir savunma altyapısıdır. Uygulama, hedef profillerin ilettiği argümanlardaki bilişsel safsataları (logical fallacies) ayrıştırır ve iletişim ağını korumaya yönelik stratejik, klinik ve psikolojik karşı-argüman (payload) paketleri derler.
 
-1. Obtain a Gemini API Key from Google AI Studio.
-2. Open the **Secrets panel** in Google AI Studio on the right, or create a `.env` file in the root directory (alongside `build.gradle.kts`).
-3. Add your key as follows:
+### Sistem Mimarisi
+- **Çekirdek Altyapı:** Android tabanlı Kotlin mimarisi
+- **Arayüz Katmanı:** Jetpack Compose (Karanlık Tema/Taktiksel Monitör standartlarında)
+- **Doğal Dil İşleme Katmanı:** Google Gemini (Retrofit HTTP İstemcisi üzerinden asenkron entegrasyon)
+- **Veri Modelleme:** Moshi (JSON serileştirme standardı)
+
+### Taktiksel Operasyon Modları
+Karşılaşılan tehdidin tipine ve hedeflenen sonuca göre sistem üç farklı protokol işletir:
+1. **Model 01 (Yok Edici Mod / Entelektüel İmha):** İletilen argümanın mantıksal temelden yoksun olduğunu klinik bir dille analiz eder. Karşı tarafın rasyonalitesini geçersiz kılar.
+2. **Model 02 (Psikolojik Baskı / Çerçeveleme):** Saldırganın niyetini zararsız ve dikkate değmez bir onaylanma ihtiyacı olarak yeniden konumlandırır.
+3. **Model 03 (Siber-Tehdit / OPSEC Meta-Analizi):** Mevcut saldırıyı düşük profilli bir veri akışı zafiyeti olarak değerlendirir. Siber güvenlik terminolojisiyle psikolojik üstünlük sağlar.
+
+### Kimlik Doğrulama ve Güvenlik Protokolleri
+Sistemin dil modelleme altyapısına erişimi için şifrelenmiş bir yetkilendirme anahtarına (API Key) ihtiyacı bulunmaktadır. Başlatma aşamasında iki yöntem tercih edilebilir:
+
+1. **Çevresel Değişken (Derleme Süreci):** 
+   Proje kök dizinindeki `.env` dosyasına entegre edilir.
    ```properties
-   GEMINI_API_KEY="AIzaSyYourGeneratedGeminiKeyHere"
+   GEMINI_API_KEY="ANAHTAR_BURAYA_GIRILECEKTIR"
    ```
-4. Build and deploy to your emulator or device! (If a valid key is not found, the app gracefully falls back to highly polished offline template responses).
+2. **Çalışma Zamanı (Runtime) Enjeksiyonu:**
+   Sistem başlatıldığında API modülü eksikliği tespit edilirse kullanıcıdan istemci üzerinden (GUI) manuel anahtar girişi talep edilir. Anahtar, yerel cihaz üzerinde güvenli donanım önbelleğinde (SharedPreferences) şifrelenerek tutulur.
 
-## Building
-Run the following Gradle command to compile an APK:
+### Derleme ve Dağıtım
+Uygulamayı mevcut NorthForge Systems derleme standartlarına göre cihaza aktarmak veya derlemek için yetkili terminal üzerinden aşağıdaki prosedür izlenmelidir:
 ```bash
-./gradlew assembleDebug
+./gradlew clean assembleDebug
 ```
+
+### Kurumsal Yasal Bildirim
+Bu yazılım altyapısı, algoritmaları ve görsel varlıkları NorthForge Systems'in fikri mülkiyetindedir. Sistem tarafından oluşturulan sentetik karşı-argüman metinlerinin saha operasyonlarında kullanımı, kullanan personelin inisiyatif ve sorumluluğundadır. İzinsiz kopyalanması, tersine mühendisliğe tabi tutulması veya üçüncü şahıslara yetkisiz dağıtılması hukuki işlem sebebidir.

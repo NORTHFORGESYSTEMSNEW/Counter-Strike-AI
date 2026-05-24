@@ -74,7 +74,6 @@ data class HostilePreset(
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             MyApplicationTheme(dynamicColor = false, darkTheme = true) {
                 Scaffold(

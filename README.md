@@ -1,96 +1,77 @@
 <div align="center">
   <img src="https://via.placeholder.com/150x150/0A0A0A/E53935?text=NF" alt="NorthForge Systems Logo" width="120" height="120">
-  <h1>NORTHFORGE SYSTEMS</h1>
-  <h3>Counter-Strike AI: Taktiksel İletişim Savunma Motoru</h3>
+  <h1>COUNTER-STRIKE AI (CS-AI)</h1>
+  <h3>Taktiksel İletişim Savunma Motoru</h3>
 </div>
 
 ---
 
-**Dağıtım Sürümü:** 4.0.2  
-**Geliştirici:** NorthForge Systems - Ar-Ge Departmanı  
-**Erişim Seviyesi:** Kurumsal / Sınırlı Erişim  
-**Durum:** Aktif Operasyonel Kullanım
+**Geliştirici:** NorthForge Systems  
+**Çekirdek Altyapı:** Google Gemini API Entegrasyonu (Gerçek Zamanlı, Dinamik Payload Üretimi)  
+**Durum:** Aktif Operasyonel Kullanım (Sıfırıncı Gün / Zero-Day Mantığı)
 
 ---
 
-## 1. Yönetici Özeti
-Counter-Strike AI, dijital iletişim kanallarında karşılaşılan sekronize, manipülatif ve saldırgan iletişim kalıplarını (siber zorbalık, provokasyon, irrasyonel söylemler) gerçek zamanlı analiz ederek yalıtan otonom bir savunma ve iletişim altyapısıdır. 
+## 1. YÖNETİCİ ÖZETİ VE SİSTEM GÖREVİ
+Counter-Strike AI (CS-AI), dijital platformlardaki asimetrik bilgi harbi, dezenformasyon ve siber zorbalık unsurlarına karşı tasarlanmış otonom bir **Taktiksel İletişim Savunma Motoru'dur**. Sıradan şablon bazlı yanıtlayıcıların aksine CS-AI, toksik yorumları, mantıksız eleştirileri ve irrasyonel saldırıları gerçek zamanlı olarak ayrıştırır. Hedefin kullandığı bilişsel safsataları (logical fallacies) saptar ve soğukkanlı, analitik bir üstünlükle saldırganı argümansız bırakacak sentetik karşı-argümanlar (payload) derler.
 
-Uygulama, hedef profillerin ilettiği argümanlardaki bilişsel safsataları (logical fallacies) derinlemesine ayrıştırır ve iletişim ağını korumaya yönelik stratejik, klinik ve psikolojik karşı-argüman (payload) paketleri derler. Gelişmiş dil modellerini kullanarak asimetrik bilgi harbi ve dijital psikolojik savunma senaryoları için asistanlık sağlar.
+## 2. TEMEL ÖZELLİKLER VE TEKNİK ÇERÇEVE
+*   **Hedef ve Tehdit Analizi:** Operatör, hedefin dijital kimliğini ve saldırgan vektörünü (toksik mesajı) terminale girer. Sistem, saldırgandaki mantıksal bozuklukları (Örn. Ad Hominem, Yansıtma, Korkuluk Safsatası) anında izole eder.
+*   **Gerçek Zamanlı AI Entegrasyonu:** İlk başlatmada güvenli bir `SecureStorage` (SharedPreferences) katmanına şifrelenen Gemini API Key aracılığıyla LLM ile asenkron iletişim kurulur. Sistem, ezberlenmiş metinler yerine hedef metnin spesifik bağlamına %100 uyumlu, keskin Türkçe yanıtlar derler.
+*   **Taktiksel Dağıtım (Deploy):** Üretilen savunma metni, hedefe doğrudan enjekte edilmek veya şifreli/şifresiz ağlarda paylaşılmak üzere tek tuşla panoya donanımsal olarak kopyalanır.
 
-## 2. Sistem Mimarisi ve Teknoloji Yığını
-Proje, tamamen modern mobil geliştirme standartlarına uygun, ölçeklenebilir ve güvenli bir mimari üzerine inşa edilmiştir.
+## 3. TAKTİKSEL SAVUNMA MODLARI (PROTOKOLLER)
 
-*   **Çekirdek Altyapı:** Android (Kotlin)
-*   **Kullanıcı Arayüzü (UI) Katmanı:** Jetpack Compose (Karanlık Tema/Taktiksel Monitör tasarım dili, Material Design 3)
-*   **Doğal Dil İşleme (NLP) Modülü:** Google Gemini 3.5 Flash Modeli (REST tabanlı etkileşim)
-*   **Ağ Katmanı:** Retrofit & OkHttp (Asenkron, güvenli HTTP istekleri)
-*   **Veri Modelleme ve Serileştirme:** Moshi
-*   **Asenkron İşlemler:** Kotlin Coroutines & Flow
-
-## 3. Taktiksel Operasyon Modları
-Karşılaşılan tehdidin tipine, kullanılan safsata modeline ve hedeflenen sonuca göre sistem üç farklı reaksiyon protokolü işletir:
-
-| Protokol Sınıfı | Kod Adı | Açıklama | Hedef Sonuç |
+| Mod Kodu | Operasyon Adı | Saldırı Vektörü | Ana Hedef (Sonuç) |
 | :--- | :--- | :--- | :--- |
-| **Model 01** | Yok Edici Mod (Entelektüel İmha) | İletilen argümanın mantıksal temelden yoksun olduğunu klinik bir dille analiz eder. Rasyonalite çerçevesini yıkar. | Karşı tarafı tamamen mantıksal çelişkileri ile baş başa bırakmak. |
-| **Model 02** | Psikolojik Baskı (Çerçeveleme) | Saldırganın niyetini zararsız ve dikkate değmez bir "onaylanma ihtiyacı" olarak yeniden konumlandırır. | Saldırganın statüsünü düşürüp, eylemini anlamsızlaştırmak. |
-| **Model 03** | Siber-Tehdit (OPSEC Meta-Analizi) | Mevcut saldırıyı düşük profilli bir veri akışı zafiyeti olarak değerlendirir. Güvenlik terminolojisiyle psikolojik üstünlük sağlar. | Zorbaya teknik jargon ile aşılmaz bir sınır çizmek. |
+| **01** | Yok Edici Mod *(Entelektüel İmha)* | Klinik ve acımasız mantık yürüterek argümandaki mantıksızlığı paramparça eder. | Saf kanıtlar ve mantıkla saldırganı izleyenlerin gözünde güvenilmez ve irrasyonel kılmak. |
+| **02** | Psikolojik Baskı *(Çerçeveleme)* | Zorbalığı veya saldırıyı, kişinin kendi bastırılmış "onaylanma ihtiyacı" olarak yeniden yorumlar. | Saldırganı çaresiz, yalnız ve duygusal olarak oldukça dengesiz (uncalibrated) göstermek. |
+| **03** | Siber-Tehdit *(OPSEC Meta-Analizi)* | Yüksek teknoloji jargonu kullanarak duygu patlamasını bir "sistem/güvenlik zafiyeti" olarak nitelendirir. | Toksik davranışı düşük seviye bir konfigürasyon hatası olarak görüp analitik olarak küçümsemek. |
 
-## 4. Güvenlik ve Kimlik Doğrulama Protokolleri
-Sistemin analiz motoruna (LLM) erişimi için yetkilendirilmiş bir API anahtarına ihtiyacı bulunmaktadır. Veri güvenliği standartları gereği anahtar yönetimi iki aşamalı güvenlik protokolü ile sağlanır:
+## 4. KURULUM VE DERLEME (ANDROID MİMARİSİ İÇİN)
 
-### Yöntem A: Sistem Seviyesi (Derleme Öncesi)
-Uygulama derlenmeden önce proje kök dizinindeki `.env` dosyasına entegre edilir. Kapalı sistem dağıtımlarında önerilir.
-```properties
-GEMINI_API_KEY="NF-AIzaSy...PROD_KEY"
-```
+Sistemi operasyonel cihaza derlemek için standart Android JDK 17/SDK 34 araç seti gereklidir.
 
-### Yöntem B: Çalışma Zamanı (Runtime) Enjeksiyonu
-Sistem başlatıldığında API modülü eksikliği tespit edilirse, operatörden arayüz üzerinden (GUI) yetkilendirme anahtarı talep edilir. 
-*Veri Güvenliği:* Girilen anahtar sunuculara iletilmez, yalnızca yerel cihaz üzerinde güvenli donanım önbelleğinde (`SharedPreferences` / `MODE_PRIVATE`) şifrelenmiş çerçevede tutulur.
-
-## 5. Kurulum ve Dağıtım
-Uygulamayı mevcut NorthForge Systems cihazlarına dağıtmak veya kaynak koddan derlemek için yetkili terminal üzerinden aşağıdaki prosedür izlenmelidir.
-
-**Gereksinimler:**
-*   Android Studio Ladybug veya üzeri
-*   JDK 17
-*   Android SDK 34
-
-**Derleme Komutu:**
 ```bash
-# Projeyi temizle ve bağımlılıkları getir
+# Depoyu yerel ortama çekin ve derleme dizinine geçin
+cd counter-strike-ai-core
+
+# Temizlik ve Build-cache sıfırlama
 ./gradlew clean
 
-# Debug sürümünü derle
+# Operasyonel Debug paketini (APK) derleyin
 ./gradlew assembleDebug
 
-# Cihaza veya emülatöre kur
-./gradlew installDebug
+# ADB ile hedef test cihazına yükleyin (İsteğe bağlı)
+adb install app/build/outputs/apk/debug/app-debug.apk
 ```
 
-## 6. Operasyonel Kullanım Kılavuzu
-1.  **Hedef Tanımlama:** Arayüz üzerinden hedefin dijital kimliği (kullanıcı adı vb.) girilir.
-2.  **Veri Girişi:** Tespit edilen saldırgan ve toksik ileti sisteme beslenir.
-3.  **Safsata Analizi:** Sistemin önerdiği veya analistin tespit ettiği mantıksal safsatalar (Örn: Ad Hominem, Yansıtma) işaretlenir.
-4.  **Protokol Seçimi:** Uygun düşen operasyon modu (01, 02 veya 03) seçilir.
-5.  **Ateşleme:** Karşı-argüman (payload) üretilir. Analist metni onayladıktan sonra panoya kopyalar veya şifreli ağlar üzerinden hedefe yönlendirir.
+> **Not:** API entegrasyonu için uygulama açılış terminalinde geçerli bir Gemini Anahtarı (API Key) girilmesi zorunludur.
 
 ---
 
-## Yasal Bildirim ve Lisanslama
+## 5. LİSANS VE KURUMSAL KOŞULLAR (GPL v3 UYARLAMASI)
 
-### NORTHFORGE SYSTEMS PROPRIETARY LICENSE (NSPL) v2.0
-**Telif Hakkı (C) 2026 NorthForge Systems. Tüm Hakları Saklıdır.**
+Bu yazılım kesinlikle MIT veya benzeri esnek bir yapıyla **LİSANSLANMAMIŞTIR**. Projenin ticari entiteler tarafından kapatılması veya sömürülmesi engellenmiştir. 
 
-Bu yazılım altyapısı, algoritmaları, kullanılan taktiksel prompt modelleri, kaynak kodları ve görsel varlıkları bütünüyle NorthForge Systems'in gizli fikri mülkiyetindedir. 
+**GNU General Public License v3 (GPL v3) Kurumsal Şartnamesi geçerlidir:**
+*   **Ticari Kullanım Yasağı:** Bu kod, çekirdek altyapı veya sistemin oluşturduğu modellemeler hiçbir ticari şirketin kapalı kaynak yazılımında kullanılamaz.
+*   **Açık Kaynak Zorunluluğu:** CS-AI kod bazını kullanan, değiştiren veya üzerine inşa edilen (fork) tüm türev (derivative) projeler, kaynak kodlarını açık bir şekilde **GPL v3** sınırları dahilinde topluluğa açmak zorundadır.
+*   Bu sistem, "Copyleft" prensiplerine mutlak suretle sadıktır. Bilgi güvenliği ve asimetrik iletişim mimarisi tekelleştirilemez.
 
-Bu yazılım ticari olmayan, açık kaynaklı veya genel kullanıma açık bir sistem DEĞİLDİR. Sadece yetkilendirilmiş NorthForge Systems personeli veya özel sözleşmelerle izin verilen birimler tarafından, NorthForge operasyonel donanımları üzerinde kullanılabilir.
+---
 
-1.  **Dağıtım Yasağı:** Bu kod veya barındırdığı yapılar, yazılı izin olmaksızın kopyalanamaz, paylaşılamaz, harici depolara aktarılamaz.
-2.  **Tersine Mühendislik:** Kod üzerinde tersine mühendislik, kaynak kod derlemesini çözme (decompilation) veya alterasyon (modification) yapılamaz.
-3.  **Sorumluluk Reddi:** Sistem tarafından oluşturulan sentetik karşı-argüman metinlerinin saha operasyonlarında kullanımı, kullanan personelin veya analistin tamamen kendi inisiyatifinde ve sorumluluğundadır. Uygulamanın yanlış kullanımı sonucu ortaya çıkabilecek hukuki, sosyal veya operasyonel zararlardan NorthForge Systems sorumlu tutulamaz.
-4.  **Denetim:** İzin verilen cihazlar üzerindeki kullanım logları güvenlik amaçlı anonim olarak denetlenebilir. İhlali durumunda kurum hukuki süreç başlatma hakkını saklı tutar.
+## 6. YASAL UYARI VE ASİMETRİK HARP VURGUSU (DISCLAIMER)
 
-*İhlal Bildirimleri ve Erişim Yetkilendirmesi için: admin@northforge.systems*
+⚠️ **DİKKAT: HUKUKİ VE OPERASYONEL SORUMLULUK BİLDİRİMİ** ⚠️
+
+Counter-Strike AI (CS-AI), dijital platformlardaki asimetrik dezenformasyona, siber zorbalığa ve organize linç girişimlerine karşı tasarlanmış otonom bir **"Meşru Müdafaa"** ve **"İletişim OPSEC'i"** aracıdır.
+
+Sistem tarafından üretilen klinik ve psikolojik "payload" (yanıt) metinlerinin doğrudan hedefe yönlendirilmesi;
+*   Karşı tarafta ağır psikolojik çöküntüye,
+*   Hedefin dijital itibarının (clout) ani ve kalıcı kaybına,
+*   Ve sosyal mühendislik eksenli beklenmedik yansımalara yol açabilir.
+
+Bu yazılım (motor), yalnızca mantıksal analizi desteklemek amacıyla kodlanmıştır. Üretilen yanıtların saha operasyonlarında, sosyal medyada veya herhangi bir iletişim kanalında kullanılmasından doğacak manevi, sosyal, hukuki ve kurumsal sonuçlardan **TAMAMEN OPERATÖR (KULLANICI) SORUMLUDUR**. NorthForge Systems veya CS-AI projesine katkıda bulunan geliştiriciler, yazılımın kullanım sonuçları üzerine hiçbir hukuki sorumluluk kabul etmez.
+
+**OPERASYONA BAŞLAMADAN ÖNCE DİJİTAL BARIŞI VE GERİLİMİ AZALTMAYI (DE-ESCALATION) TERCİH EDİNİZ.**

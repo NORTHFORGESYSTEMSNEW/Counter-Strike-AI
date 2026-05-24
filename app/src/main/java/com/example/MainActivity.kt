@@ -99,14 +99,14 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
     val coroutineScope = rememberCoroutineScope()
 
     // Screen state
-    var targetUsername by remember { mutableStateOf("@vortex_troll88") }
+    var targetUsername by remember { mutableStateOf("") }
     var targetMessage by remember {
-        mutableStateOf("Your entire project is a failure. Nobody cares about your input. Cope harder.")
+        mutableStateOf("")
     }
 
     // List of fallacies current active
     var activeFallacies by remember {
-        mutableStateOf(setOf("Ad Hominem", "Gaslighting"))
+        mutableStateOf(emptySet<String>())
     }
 
     var selectedMode by remember { mutableIntStateOf(1) } // 1: Nuke, 2: Gaslight, 3: OSINT-Threat
@@ -114,34 +114,6 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
     var currentLoadingStatus by remember { mutableStateOf("") }
     var generatedRebuttal by remember { mutableStateOf("") }
     var hasGeneratedOnce by remember { mutableStateOf(false) }
-
-    // Preset comments for convenient demo interactivity
-    val presets = listOf(
-        HostilePreset(
-            "@vortex_troll88",
-            "Your entire project is a failure. Nobody cares about your input. Cope harder.",
-            "High",
-            listOf("Ad Hominem", "Gaslighting")
-        ),
-        HostilePreset(
-            "@clout_chaser_00",
-            "This screen looks basic. An automated bot could do better. Disgraceful.",
-            "Normal",
-            listOf("Tone Policing", "Generalization")
-        ),
-        HostilePreset(
-            "@argument_lord",
-            "Nice try, but you avoided my previous point entirely. Shows how weak your skills are.",
-            "High",
-            listOf("Strawman", "Moving Goalposts")
-        ),
-        HostilePreset(
-            "@toxic_coder",
-            "You only build what templates tell you to. Zero original reasoning. Disastrous.",
-            "Critical",
-            listOf("Projection", "False Equivalence")
-        )
-    )
 
     // Glowing animation for red security indicator
     val infiniteTransition = rememberInfiniteTransition(label = "Glow")
@@ -172,7 +144,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "SYS_TIME: 2026-05-24",
+                text = "SİSTEM SAATİ: 2026-05-24",
                 style = TextStyle(
                     fontFamily = FontFamily.Monospace,
                     fontSize = 11.sp,
@@ -190,7 +162,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                         .border(1.dp, Color.White.copy(alpha = 0.1f), CircleShape)
                 )
                 Text(
-                    text = "ACTIVE SECURE ENGINE",
+                    text = "AKTİF GÜVENLİK MOTORU",
                     style = TextStyle(
                         fontFamily = FontFamily.Monospace,
                         fontSize = 10.sp,
@@ -242,7 +214,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                     )
                 }
                 Text(
-                    text = "AGGRESSIVE DEFENSE ENGINE v4.0.2",
+                    text = "AGRESİF SAVUNMA MOTORU v4.0.2",
                     style = TextStyle(
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,
@@ -256,68 +228,9 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 3. Horizontal Preset Selectors (Enables high interactivity!)
-        Text(
-            text = "LOAD TARGET TEMPLATE PILLS",
-            style = TextStyle(
-                fontSize = 10.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.5.sp,
-                color = SlatedGray
-            ),
-            modifier = Modifier.padding(horizontal = 24.dp, vertical = 6.dp)
-        )
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .horizontalScroll(rememberScrollState())
-                .padding(horizontal = 24.dp, vertical = 4.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            presets.forEachIndexed { idx, preset ->
-                val isSelected = targetUsername == preset.username && targetMessage == preset.message
-                Box(
-                    modifier = Modifier
-                        .testTag("preset_troll_${idx + 1}")
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(if (isSelected) RedAccent.copy(alpha = 0.2f) else CardDarkLighter)
-                        .border(
-                            1.dp,
-                            if (isSelected) RedAccent else Color.White.copy(alpha = 0.08f),
-                            RoundedCornerShape(12.dp)
-                        )
-                        .clickable {
-                            targetUsername = preset.username
-                            targetMessage = preset.message
-                            activeFallacies = preset.likelyFallacies.toSet()
-                        }
-                        .padding(horizontal = 14.dp, vertical = 8.dp)
-                ) {
-                    Column(horizontalAlignment = Alignment.Start) {
-                        Text(
-                            text = preset.username,
-                            color = if (isSelected) Color.White else LightSlate,
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Bold,
-                            fontFamily = FontFamily.Monospace
-                        )
-                        Text(
-                            text = "Threat: " + preset.hostility,
-                            color = if (preset.hostility == "High" || preset.hostility == "Critical") RedGlow else EmeraldAccent,
-                            fontSize = 9.sp,
-                            fontWeight = FontWeight.SemiBold
-                        )
-                    }
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
         // 4. Input Fields for Target Profile
         Text(
-            text = "TARGET PROFILE DATABASE",
+            text = "HEDEF PROFİL VERİTABANI",
             style = TextStyle(
                 fontSize = 10.sp,
                 fontWeight = FontWeight.Bold,
@@ -343,14 +256,14 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                 ) {
                     Column {
                         Text(
-                            text = "TARGET INTENT MONITOR",
+                            text = "HEDEF NİYET MONİTÖRÜ",
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
                             color = RedAccent,
                             fontFamily = FontFamily.Monospace
                         )
                         Text(
-                            text = "Awaiting Payload Selection",
+                            text = "Hedef Gösterilmesi Bekleniyor",
                             fontSize = 12.sp,
                             color = LightSlate,
                             fontWeight = FontWeight.Medium
@@ -363,7 +276,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                             .padding(horizontal = 8.dp, vertical = 4.dp)
                     ) {
                         Text(
-                            text = "HOSTILITY: ${if (activeFallacies.size >= 3) "SEVERE" else "ELEVATED"}",
+                            text = "TEHDİT SEVİYESİ: ${if (activeFallacies.size >= 3) "KRİTİK" else "YÜKSEK"}",
                             fontSize = 9.sp,
                             color = RedGlow,
                             fontWeight = FontWeight.Bold,
@@ -381,7 +294,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .testTag("target_username_input"),
-                    label = { Text("Target Digital Handle", color = SlatedGray) },
+                    label = { Text("Hedef Dijital Kimlik", color = SlatedGray) },
                     textStyle = TextStyle(color = Color.White, fontFamily = FontFamily.Monospace, fontSize = 14.sp),
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
@@ -402,7 +315,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                         .fillMaxWidth()
                         .height(88.dp)
                         .testTag("target_message_input"),
-                    label = { Text("Intercepted Hostile Comment", color = SlatedGray) },
+                    label = { Text("Tespit Edilen Toksik Yorum", color = SlatedGray) },
                     textStyle = TextStyle(color = LightSlate, fontSize = 13.sp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = RedAccent,
@@ -453,7 +366,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "TACTICAL COGNITIVE FALLACIES",
+                text = "TAKTİKSEL BİLİŞSEL SAFSATALAR",
                 style = TextStyle(
                     fontSize = 10.sp,
                     fontWeight = FontWeight.Bold,
@@ -462,7 +375,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                 )
             )
             Text(
-                text = "${activeFallacies.size} ENABLED",
+                text = "${activeFallacies.size} AKTİF",
                 style = TextStyle(
                     fontSize = 9.sp,
                     fontFamily = FontFamily.Monospace,
@@ -473,8 +386,8 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
         }
 
         val allFallacies = listOf(
-            "Ad Hominem", "Gaslighting", "Moving Goalposts", "Projection",
-            "Tone Policing", "Strawman", "Emotional Defense", "False Equivalence"
+            "Kişiye Saldırı", "Gaslighting", "Hedef Saptırma", "Yansıtma",
+            "Üslup Bekçiliği", "Korkuluk Safsatası", "Duygusal Savunma", "Yanlış Eşdeğerlik"
         )
 
         Row(
@@ -532,7 +445,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
 
         // 6. Select Strike Mode List
         Text(
-            text = "SELECT REBUTTAL STRIKE PROTOCOL",
+            text = "KARŞI SALDIRI PROTOKOLÜ SEÇİN",
             style = TextStyle(
                 fontSize = 10.sp,
                 fontWeight = FontWeight.Bold,
@@ -551,9 +464,9 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
             // Mode 1 Indicator Card
             StrikeModeSelectorCard(
                 modeIndex = 1,
-                title = "01. NUKE MODE",
-                subText = "Intellectual Annihilation",
-                tagline = "Devastating logical breakdown designed to dismantle public arguments.",
+                title = "01. YOK EDİCİ MOD",
+                subText = "Entelektüel İmha",
+                tagline = "Argümanları tamamen çürütmek için tasarlanmış yıkıcı mantıksal analiz.",
                 accentColor = RedGlow,
                 isSelected = selectedMode == 1,
                 onClick = { selectedMode = 1 },
@@ -563,9 +476,9 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
             // Mode 2 Indicator Card
             StrikeModeSelectorCard(
                 modeIndex = 2,
-                title = "02. GASLIGHT MODE",
-                subText = "Psychological Dominance",
-                tagline = "Polite re-framing to make the attacker doubt their emotional standing.",
+                title = "02. PSİKOLOJİK BASKI",
+                subText = "Psikolojik Üstünlük",
+                tagline = "Saldırganı paniğe sokup kendi sözlerinden şüphe ettiren kibar çerçeveleme.",
                 accentColor = IndigoAccent,
                 isSelected = selectedMode == 2,
                 onClick = { selectedMode = 2 },
@@ -575,9 +488,9 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
             // Mode 3 Indicator Card
             StrikeModeSelectorCard(
                 modeIndex = 3,
-                title = "03. OSINT-THREAT",
-                subText = "The Tech Flex",
-                tagline = "Cybersecurity-centric meta commentary reminding they have weak OpSec logic.",
+                title = "03. SİBER-TEHDİT",
+                subText = "Teknolojik Üstünlük",
+                tagline = "Onlara güvenlik ve mantıklarının ne kadar zayıf olduğunu gösteren meta yorum.",
                 accentColor = EmeraldAccent,
                 isSelected = selectedMode == 3,
                 onClick = { selectedMode = 3 },
@@ -632,7 +545,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
             Button(
                 onClick = {
                     if (targetMessage.isBlank()) {
-                        Toast.makeText(context, "Please write or select a target comment first.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Lütfen önce hedef bir yorum girin.", Toast.LENGTH_SHORT).show()
                         return@Button
                     }
                     coroutineScope.launch {
@@ -640,10 +553,10 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                         generatedRebuttal = ""
                         // Interactive sequence simulation to mimic highly complex diagnostic cybersecurity engines
                         val loadingStages = listOf(
-                            "[CYBER DEEPMIND: BOOTING DEFENSE PROTOCOLS...]",
-                            "[MONITORING SPEECH PATTERNS AND INTENT...]",
-                            "[MATCHING COGNITIVE WEAKNESS AND RETRIEVING COUNTER-SPEECH LOGIC...]",
-                            "[COMPILE REBUTTAL PAYLOAD FOR TERMINAL DEPLOYMENT...]"
+                            "[CYBER DEEPMIND: SAVUNMA PROTOKOLLERİ BAŞLATILIYOR...]",
+                            "[KONUŞMA MODELLERİ VE NİYET ANALİZ EDİLİYOR...]",
+                            "[BİLİŞSEL ZAAFLAR EŞLEŞTİRİLİYOR VE KARŞI-ARGÜMAN MANTIĞI ÇEKİLİYOR...]",
+                            "[TERMİNAL DAĞITIMI İÇİN YANIT YÜKÜ DERLENİYOR...]"
                         )
                         for (stage in loadingStages) {
                             currentLoadingStatus = stage
@@ -684,7 +597,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                         modifier = Modifier.size(18.dp)
                     )
                     Text(
-                        text = if (isLoading) "PROCESSING ENGINES..." else "EXECUTE TACTICAL COUNTER-STRIKE",
+                        text = if (isLoading) "MOTORLAR İŞLİYOR..." else "TAKTİKSEL KARŞI SALDIRIYI BAŞLAT",
                         style = TextStyle(
                             fontWeight = FontWeight.Black,
                             fontSize = 13.sp,
@@ -711,7 +624,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                     verticalAlignment = Alignment.Bottom
                 ) {
                     Text(
-                        text = "DEPLOYED DEFENSIVE COUNTER-STRIKE",
+                        text = "UYGULANAN SAVUNMA SALDIRISI",
                         style = TextStyle(
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
@@ -720,9 +633,9 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                         )
                     )
                     val modeLabel = when (selectedMode) {
-                        1 -> "[NUKE MODE ACTIVE]"
-                        2 -> "[GASLIGHT MODE ACTIVE]"
-                        else -> "[OSINT METRICS ACTIVE]"
+                        1 -> "[YOK EDİCİ MOD AKTİF]"
+                        2 -> "[PSİKOLOJİK BASKI AKTİF]"
+                        else -> "[SİBER TEHDİT AKTİF]"
                     }
                     val modeColor = when (selectedMode) {
                         1 -> RedGlow
@@ -766,7 +679,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                                 Box(modifier = Modifier.size(7.dp).background(EmeraldAccent, CircleShape))
                             }
                             Text(
-                                text = "TERMINAL_OUT // SECURE_LINE_1",
+                                text = "TERMİNAL_ÇIKTISI // GÜVENLİ_HAT_1",
                                 color = SlatedGray,
                                 fontSize = 8.sp,
                                 fontFamily = FontFamily.Monospace
@@ -800,7 +713,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                             Button(
                                 onClick = {
                                     clipboardManager.setText(AnnotatedString(generatedRebuttal))
-                                    Toast.makeText(context, "Tactical strike text copied!", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, "Taktiksel saldırı metni kopyalandı!", Toast.LENGTH_SHORT).show()
                                 },
                                 modifier = Modifier
                                     .testTag("copy_response_button")
@@ -818,11 +731,11 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Check,
-                                        contentDescription = "Copy Rebuttal Output",
+                                        contentDescription = "Panoya Kopyala",
                                         modifier = Modifier.size(14.dp),
                                         tint = EmeraldAccent
                                     )
-                                    Text("COPY TO CLIPBOARD", fontSize = 10.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace)
+                                    Text("PANOYA KOPYALA", fontSize = 10.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace)
                                 }
                             }
 
@@ -833,7 +746,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                                         type = "text/plain"
                                         putExtra(Intent.EXTRA_TEXT, generatedRebuttal)
                                     }
-                                    context.startActivity(Intent.createChooser(shareIntent, "Deploy Counter-Strike"))
+                                    context.startActivity(Intent.createChooser(shareIntent, "Metni Paylaş"))
                                 },
                                 modifier = Modifier
                                     .testTag("share_response_button")
@@ -842,7 +755,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Share,
-                                    contentDescription = "Share Strike Payload",
+                                    contentDescription = "Saldırı Yanıtını Paylaş",
                                     tint = LightSlate,
                                     modifier = Modifier.size(16.dp)
                                 )
@@ -867,12 +780,12 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Info,
-                                contentDescription = "Intelligence Guidance Info",
+                                contentDescription = "Yapay Zeka Rehberliği",
                                 tint = IndigoAccent,
                                 modifier = Modifier.size(16.dp)
                             )
                             Text(
-                                text = "TACTICAL COPE ANALYSIS",
+                                text = "TAKTİKSEL ANALİZ DANIŞMANLIĞI (YAPAY ZEKA)",
                                 style = TextStyle(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 11.sp,
@@ -883,9 +796,9 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                         val defenseInsight = when (selectedMode) {
-                            1 -> "Intellectual annihilation is clean and public. Exposing ${activeFallacies.firstOrNull() ?: "their fallacies"} strips their subjective legitimacy because it forces onlookers to judge them purely on logical evidence instead of emotive drama. They are locked from responding fruitfully."
-                            2 -> "Witty boundary-setting redirects the emotional force of their bullying vector. By treating their hostility as a transparent demand for self-worth, we deflate their social positioning entirely. They appear over-invested, silenced, and needy."
-                            else -> "The cybersecurity 'tech flex' is a psychological shield that leverages complex technical frameworks. Presenting their aggressive feedback as an 'OPSEC threat vulnerability' positions you as an elite, detached operator who views online toxicity as a minor configuration bug."
+                            1 -> "Entelektüel imha temiz ve halka açıktır. ${activeFallacies.firstOrNull() ?: "Mantıksal safsatalarını"} ifşa etmek, izleyenleri duygusal bir dramadan ziyade onları saf kanıtlarla yargılamaya zorladığı için kişisel meşruiyetini elinden alır."
+                            2 -> "Zekice sınırlar koymak, zorbalığın duygusal gücünü kırar. Düşmanlıklarını şeffaf bir 'onaylanma ihtiyacı' olarak göstererek tüm itibarını alt üst ediyoruz."
+                            else -> "Siber güvenlik odaklı metinler, üst düzey teknik altyapılardan yararlanan psikolojik bir kalkandır. Toksik mesajlarını bir 'OPSEC güvenlik zafiyeti' olarak sunmak, sizi bu tür zorbalıkları küçük bir donanım hatası olarak gören seçkin bir siber analist konumuna getirir."
                         }
                         Text(
                             text = defenseInsight,
@@ -901,7 +814,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
                 
                 // Opsec tip educational section
                 Text(
-                    text = "🔒 ONLINE BOUNDARY SECURITY MEMO:\nRemember, cyberbullies feed on emotional engagement. Never let online comments define your real-world progress. This engine is created for cybersecurity awareness and logical boundary defense. Keep your OpSec strong, stay composed, and secure your digital peace.",
+                    text = "🔒 ÇEVRİMİÇİ SINIR GÜVENLİĞİ NOTU:\nUnutmayın, siber zorbalar duygusal etkileşimden beslenir. Çevrimiçi yorumların karakterinizi tanımlamasına asla izin vermeyin. Counter-Strike AI adlı bu motor, siber güvenlik farkındalığı ve yapay zeka destekli mantıksal sınır savunması sağlamak için tasarlanmıştır. OPSEC'inizi güçlü kılın ve dijital huzurunuzu güvence altına alın.",
                     fontSize = 10.sp,
                     color = SlatedGray.copy(alpha = 0.8f),
                     lineHeight = 15.sp,
@@ -917,11 +830,11 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
 
 private fun toastCounterStrikeFeedback(context: Context, mode: Int) {
     val strikeText = when (mode) {
-        1 -> "Nuke Rebuttal Compiled"
-        2 -> "Gaslight Pivot Configured"
-        else -> "OpSec Tech Flex Deployed"
+        1 -> "Yok Edici Yanıt Derlendi"
+        2 -> "Psikolojik Baskı Ayarlandı"
+        else -> "Siber Tehdit Jargonu Uygulandı"
     }
-    Toast.makeText(context, "Tactical Counter-Strike: $strikeText", Toast.LENGTH_SHORT).show()
+    Toast.makeText(context, "Taktiksel Counter-Strike: $strikeText", Toast.LENGTH_SHORT).show()
 }
 
 @Composable

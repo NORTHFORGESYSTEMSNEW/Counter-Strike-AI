@@ -1,5 +1,5 @@
 {
-  "name": "Counter-Strike AI",
+  "name": "CS v10",
   "description": "Aggressive cyberbullying defense engine that dismantles toxic arguments with logical precision.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

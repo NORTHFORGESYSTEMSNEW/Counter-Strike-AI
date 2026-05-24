@@ -8,12 +8,12 @@ plugins {
 
 android {
   namespace = "com.example"
-  compileSdk = 35
+  compileSdk = 34
 
   defaultConfig {
-    applicationId = "com.aistudio.cyberdefense.csaix"
+    applicationId = "com.aistudio.cyberdefense.csaiu"
     minSdk = 21
-    targetSdk = 35
+    targetSdk = 34
     versionCode = 1
     versionName = "1.0"
 
@@ -44,7 +44,7 @@ android {
       signingConfig = signingConfigs.getByName("release")
     }
     debug {
-      signingConfig = signingConfigs.getByName("debugConfig")
+      signingConfig = signingConfigs.getByName("debug")
     }
   }
   compileOptions {
@@ -124,7 +124,7 @@ tasks.register<Copy>("copyApkToReleases") {
   dependsOn("assembleDebug")
   from(layout.buildDirectory.dir("outputs/apk/debug")) {
     include("app-debug.apk")
-    rename { "Counter-Strike-AI.apk" }
+    rename { "cs_v10.apk" }
   }
   into(rootProject.layout.projectDirectory.dir("Releases"))
 }

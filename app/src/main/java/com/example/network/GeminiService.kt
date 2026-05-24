@@ -88,12 +88,13 @@ object RetrofitClient {
 object GeminiGenerator {
 
     suspend fun generateCounterStrike(
+        apiKey: String,
         targetHandle: String,
         targetMessage: String,
         selectedMode: Int, // 1: Nuke, 2: Gaslight, 3: OSINT-Threat
         fallacies: List<String>
     ): String = withContext(Dispatchers.IO) {
-        val apiKey = BuildConfig.GEMINI_API_KEY
+        val finalApiKey = if (apiKey.isNotBlank()) apiKey else BuildConfig.GEMINI_API_KEY
 
         val systemPrompt = when (selectedMode) {
             1 -> """
@@ -141,7 +142,7 @@ object GeminiGenerator {
         """.trimIndent()
 
         // Graceful check if API Key is placeholder/empty
-        if (apiKey.isEmpty() || apiKey == "MY_GEMINI_API_KEY" || apiKey == "placeholder") {
+        if (finalApiKey.isEmpty() || finalApiKey == "MY_GEMINI_API_KEY" || finalApiKey == "placeholder") {
             // Return realistic, polished templates based on mode and inputs for demo/prototype mode
             return@withContext getFallbackResponse(targetHandle, targetMessage, selectedMode, fallacies)
         }
@@ -152,7 +153,7 @@ object GeminiGenerator {
         )
 
         try {
-            val response = RetrofitClient.service.generateContent(apiKey, request)
+            val response = RetrofitClient.service.generateContent(finalApiKey, request)
             response.candidates?.firstOrNull()?.content?.parts?.firstOrNull()?.text?.trim()
                 ?: getFallbackResponse(targetHandle, targetMessage, selectedMode, fallacies)
         } catch (e: Exception) {

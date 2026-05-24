@@ -97,6 +97,10 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
     val coroutineScope = rememberCoroutineScope()
+    
+    val sharedPrefs = remember { context.getSharedPreferences("CS_Prefs", Context.MODE_PRIVATE) }
+    var apiKey by remember { mutableStateOf(sharedPrefs.getString("GEMINI_API_KEY", "") ?: "") }
+    var showApiKeyDialog by remember { mutableStateOf(apiKey.isBlank()) }
 
     // Screen state
     var targetUsername by remember { mutableStateOf("") }
@@ -129,6 +133,55 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
 
     // Custom ScrollState
     val scrollState = rememberScrollState()
+
+    if (showApiKeyDialog) {
+        var tempApiKey by remember { mutableStateOf(apiKey) }
+        AlertDialog(
+            onDismissRequest = { /* Allow dismissing */ },
+            confirmButton = {
+                TextButton(onClick = {
+                    apiKey = tempApiKey
+                    sharedPrefs.edit().putString("GEMINI_API_KEY", apiKey).apply()
+                    showApiKeyDialog = false
+                }) {
+                    Text("KAYDET", color = RedAccent, fontWeight = FontWeight.Bold)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showApiKeyDialog = false }) {
+                    Text("ATLA", color = SlatedGray)
+                }
+            },
+            title = {
+                Text("C-S AI Motoru Başlatılıyor", color = Color.White, fontWeight = FontWeight.Bold)
+            },
+            text = {
+                Column {
+                    Text(
+                        "Dinamik ve gerçek zamanlı saldırı savunması oluşturmak için bir Google Gemini API anahtarına ihtiyacınız var. Atlamanız durumunda çevrimdışı şablonlar kullanılacaktır.",
+                        color = LightSlate,
+                        fontSize = 13.sp,
+                        lineHeight = 18.sp
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    OutlinedTextField(
+                        value = tempApiKey,
+                        onValueChange = { tempApiKey = it },
+                        label = { Text("Gemini API Key", color = SlatedGray) },
+                        textStyle = TextStyle(color = Color.White, fontFamily = FontFamily.Monospace),
+                        singleLine = true,
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = RedAccent,
+                            unfocusedBorderColor = Color.White.copy(alpha = 0.2f),
+                            cursorColor = RedAccent
+                        )
+                    )
+                }
+            },
+            containerColor = CardDark,
+            shape = RoundedCornerShape(20.dp)
+        )
+    }
 
     Column(
         modifier = modifier
@@ -565,6 +618,7 @@ fun CounterStrikeDashboard(modifier: Modifier = Modifier) {
 
                         // Generate payload using Gemini
                         generatedRebuttal = GeminiGenerator.generateCounterStrike(
+                            apiKey = apiKey,
                             targetHandle = targetUsername,
                             targetMessage = targetMessage,
                             selectedMode = selectedMode,

@@ -119,3 +119,12 @@ dependencies {
   "ksp"(libs.androidx.room.compiler)
   "ksp"(libs.moshi.kotlin.codegen)
 }
+
+tasks.register<Copy>("copyApkToReleases") {
+  dependsOn("assembleDebug")
+  from(layout.buildDirectory.dir("outputs/apk/debug")) {
+    include("app-debug.apk")
+    rename { "Counter-Strike-AI.apk" }
+  }
+  into(rootProject.layout.projectDirectory.dir("Releases"))
+}

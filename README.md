@@ -1,21 +1,34 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Counter-Strike AI
 
-# Run and deploy your AI Studio app
+A modern, highly-stylized Jetpack Compose Android application acting as an "Aggressive Cyberbullying Defense Engine." It dismantles toxic arguments with logical precision by utilizing the Gemini API to formulate intelligent counter-arguments against online trolls, toxic comments, or logical fallacies.
 
-This contains everything you need to run your app locally.
+## Features
+- 🛡️ **Cyber Defense UI**: A cyberpunk, terminal-style interface built purely via Jetpack Compose.
+- 🤖 **Gemini AI Engine**: Utilizes Gemini 3.5 Flash through Retrofit to dismantle arguments logically.
+- 🎯 **Tactical Modes**: 
+  - **Nuke Mode**: Pure intellectual and logical breakdown.
+  - **Gaslight Mode**: Psychological dominance by framing the attacker as emotionally needy.
+  - **OSINT-Threat Mode**: Tech-flex focusing on their OPSEC and emotional vulnerabilities.
+- 🔗 **Share/Copy Payloads**: Easily copy generated responses to the clipboard or share them seamlessly via the Android share sheet.
 
-View your app in AI Studio: https://ai.studio/apps/4c9e5d23-501c-42f2-9510-533fec4d64d8
+## Project Structure
+- Built with **Kotlin** and **Jetpack Compose**.
+- Network requests are handled by **Retrofit** and **Moshi**.
+- Utilizes the **Secrets Gradle Plugin** for API Key integration.
 
-## Run Locally
+## How to Set Up (API Key Configuration)
+This application uses the Gemini Pro API to dynamically generate responses. To build and run the app with real AI responses, follow these steps:
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
+1. Obtain a Gemini API Key from Google AI Studio.
+2. Open the **Secrets panel** in Google AI Studio on the right, or create a `.env` file in the root directory (alongside `build.gradle.kts`).
+3. Add your key as follows:
+   ```properties
+   GEMINI_API_KEY="AIzaSyYourGeneratedGeminiKeyHere"
+   ```
+4. Build and deploy to your emulator or device! (If a valid key is not found, the app gracefully falls back to highly polished offline template responses).
 
-
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
+## Building
+Run the following Gradle command to compile an APK:
+```bash
+./gradlew assembleDebug
+```

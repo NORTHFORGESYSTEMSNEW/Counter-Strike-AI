@@ -59,7 +59,7 @@ Bu yazılım kesinlikle MIT veya benzeri esnek bir yapıyla **LİSANSLANMAMIŞTI
 *   **Açık Kaynak Zorunluluğu:** CS-AI kod bazını kullanan, değiştiren veya üzerine inşa edilen (fork) tüm türev (derivative) projeler, kaynak kodlarını açık bir şekilde **GPL v3** sınırları dahilinde topluluğa açmak zorundadır.
 *   Bu sistem, "Copyleft" prensiplerine mutlak suretle sadıktır. Bilgi güvenliği ve asimetrik iletişim mimarisi tekelleştirilemez.
   
-  :Duyuru:Bu bir test sürümüdür. Sistemdeki mevcut eksiklikler ve hatalı fonksiyonlar sonraki güncellemelerle tamamen giderilecektir.  --
+  Duyuru:Bu bir test sürümüdür. Sistemdeki mevcut eksiklikler ve hatalı fonksiyonlar sonraki güncellemelerle tamamen giderilecektir.  --
 
 
 ## 6. YASAL UYARI VE ASİMETRİK HARP VURGUSU (DISCLAIMER)

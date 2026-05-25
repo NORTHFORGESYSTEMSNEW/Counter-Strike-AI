@@ -47,7 +47,7 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 ```
 
 > **Not:** API entegrasyonu için uygulama açılış terminalinde geçerli bir Gemini Anahtarı (API Key) girilmesi zorunludur.
-
+(Google AI Studio'dan kodlama alanında yardım alınmıştır)
 ---
 
 ## 5. LİSANS VE KURUMSAL KOŞULLAR (GPL v3 UYARLAMASI)

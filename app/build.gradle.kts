@@ -98,6 +98,7 @@ dependencies {
   implementation(libs.logging.interceptor)
   implementation(libs.moshi.kotlin)
   implementation(libs.okhttp)
+  implementation(libs.play.services.ads)
   // implementation(libs.play.services.location)
   implementation(libs.retrofit)
   testImplementation(libs.androidx.compose.ui.test.junit4)
@@ -124,7 +125,7 @@ tasks.register<Copy>("copyApkToReleases") {
   dependsOn("assembleDebug")
   from(layout.buildDirectory.dir("outputs/apk/debug")) {
     include("app-debug.apk")
-    rename { "cs_v10.apk" }
+    rename { "counter-strike-ai.apk" }
   }
   into(rootProject.layout.projectDirectory.dir("Releases"))
 }

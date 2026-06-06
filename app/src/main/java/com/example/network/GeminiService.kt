@@ -141,10 +141,9 @@ object GeminiGenerator {
             TAKTİKSEL SAFSATALAR: ${fallacies.joinToString()}
         """.trimIndent()
 
-        // Graceful check if API Key is placeholder/empty
-        if (finalApiKey.isEmpty() || finalApiKey == "MY_GEMINI_API_KEY" || finalApiKey == "placeholder") {
-            // Return realistic, polished templates based on mode and inputs for demo/prototype mode
-            return@withContext getFallbackResponse(targetHandle, targetMessage, selectedMode, fallacies)
+        // Güvenlik Kontrolü: API Key boş veya geçersizse işlemi iptal et
+        if (finalApiKey.isEmpty() || finalApiKey == "MY_GEMINI_API_KEY" || finalApiKey == "placeholder" || finalApiKey.startsWith("NF-AIzaSy")) {
+            return@withContext "[KORUMA PROTOKOLÜ GEÇERSİZ]\nTerminal Hatası: Geçerli bir Gemini API Anahtarı (API Key) saptanamadı. Taktiksel savunma motoru çevrimdışı. Lütfen geçerli bir kimlik doğrulama anahtarını arayüzden girerek tekrar deneyin."
         }
 
         val request = GenerateContentRequest(
@@ -155,38 +154,10 @@ object GeminiGenerator {
         try {
             val response = RetrofitClient.service.generateContent(finalApiKey, request)
             response.candidates?.firstOrNull()?.content?.parts?.firstOrNull()?.text?.trim()
-                ?: getFallbackResponse(targetHandle, targetMessage, selectedMode, fallacies)
+                ?: "[SİSTEM UYARISI] Hedefin zafiyetleri analiz edildi ancak motor uygun bir iletişim vektörü (yanıt) oluşturamadı."
         } catch (e: Exception) {
-            // Returnfallback if request fails (such as quota, network, or bad key issues)
-            getFallbackResponse(targetHandle, targetMessage, selectedMode, fallacies)
-        }
-    }
-
-    private fun getFallbackResponse(
-        targetHandle: String,
-        targetMessage: String,
-        selectedMode: Int,
-        fallacies: List<String>
-    ): String {
-        val fallacyList = if (fallacies.isEmpty()) listOf("Ad Hominem", "Yansıtma") else fallacies
-        return when (selectedMode) {
-            1 -> {
-                "$targetHandle analizi tamamlandı. Düşmanca vektör tespit edildi. " +
-                        "Yanıtınız, esas tartışmadan dikkat dağıtmak için yüksek şeffaflıkta ${fallacyList.first()} taktiklerini kullanıyor. " +
-                        "Klinik kanıtları genel bir duygusal öfkeyle (örn. \"$targetMessage\") değiştirerek, " +
-                        "kendi entelektüel güvenilirliğinizi sıfıra indirmeyi başardınız. Bilişsel parametreleriniz güncellendiğinde geri dönün."
-            }
-            2 -> {
-                "Kişisel enerjinizin büyük bir kısmının şu anda benim çıktılarıma yatırılmasını izlemek büyüleyici. " +
-                        "Bu duygusal bağımlılığı aşmanıza yardımcı olmak için sırama biraz zaman ayırmalı mıyım, $targetHandle? " +
-                        "Katkıda bulunacak bu kadar az şeyiniz varken gelişimimizi bu kadar yakından izlemek çok yorucu olmalı."
-            }
-            else -> {
-                "Uyarı: $targetHandle tartışma katmanı protokolü başarısız oldu. " +
-                        "Düşmanlık göstergeleri (değer: ${targetMessage.length}), kendini koruma açısından ciddi bir OPSEC (operasyonel güvenlik) arızasına işaret ediyor. " +
-                        "Duygusal metriklerinizi, önceden bir bilişsel filtreleme yapmadan halka açık alanda sergilemek kritik bir güvenlik zafiyetidir. " +
-                        "Başka bir herkese açık etkileşime girmeden önce operasyonel mantığınızı güncellemenizi şiddetle tavsiye ederiz."
-            }
+            // Hata durumunda güvenlik bildirimi dön
+            "[GÜVENLİK İHLALİ VEYA AĞ HATASI]\nSavunma ağına komut iletilemedi. Olası nedenler:\n1. Geçersiz API Anahtarı.\n2. Bağlantı Sorunu.\n3. Model Kota Aşımı (HTTP 429)."
         }
     }
 }
